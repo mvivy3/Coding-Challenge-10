@@ -93,3 +93,21 @@ inventoryWithOrders.addProduct(prod1);
 inventoryWithOrders.placeOrder(601, prod1, 2);
 inventoryWithOrders.listOrders();
 console.log(prod1.getDetails());
+
+// TASK 5: IMPLEMENTING PRODUCT RESTOCKING
+
+// Add a method in the Inventory class
+class InventoryWithRestocking extends InventoryWithOrders {
+    restockProduct(productId, quantity) {
+        const product = this.products.find(prod => prod.id === productId);
+        if (product) {
+            product.stock += quantity; // The method should increase the stock of the product 
+        } else {
+            console.log("No inventory"); // The message that is returned if stock is not increased
+        }
+    }
+}
+const inventoryWithRestocking = new InventoryWithRestocking();
+inventoryWithRestocking.addProduct(prod1);
+inventoryWithRestocking.restockProduct(101, 5);
+console.log(prod1.getDetails());
