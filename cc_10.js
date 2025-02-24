@@ -44,3 +44,21 @@ const order1 = new Order(501, prod1, 2);
 console.log(order1.getOrderDetails());
 
 console.log(prod1.getDetails());
+
+// TASK 3: CREATING AN INVENTORY CLASS
+
+// Create an Inventory class
+class Inventory {
+    constructor() {
+        this.products = [];  
+    }
+    addProduct(product) {
+        this.products.push(product); // Adds a new product to inventory
+}
+    listProducts() { // Logs all products' details
+        this.products.forEach(product => console.log(product.getDetails()));
+    }
+}
+const inventory = new Inventory();
+inventory.addProduct(prod1);
+inventory.listProducts();
