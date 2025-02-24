@@ -62,3 +62,34 @@ class Inventory {
 const inventory = new Inventory();
 inventory.addProduct(prod1);
 inventory.listProducts();
+
+// TASK 4: IMPLEMENTING ORDER MANAGEMENT
+
+// Add a orders array in the Inventory class
+class InventoryWithOrders extends Inventory { // Add a orders array in the Inventory class
+    constructor() {
+        super()
+        this.orders = [];
+    }
+    placeOrder(orderId, product, quantity) { // Creates a new order and adds it to orders if stock is available
+        if (product.stock >= quantity) {
+            let order = new Order(orderId, product, quantity);
+            this.orders.push(order);
+            console.log("success");
+        } else {
+            console.log("Error");
+        }
+    }
+    listOrders() { // Logs all placed orders
+        if (this.orders.length === 0) {
+            console.log("no order placed");
+        } else {
+        this.orders.forEach(order => console.log(order.getOrderDetails()));
+        }
+    }
+}
+const inventoryWithOrders = new InventoryWithOrders();
+inventoryWithOrders.addProduct(prod1);
+inventoryWithOrders.placeOrder(601, prod1, 2);
+inventoryWithOrders.listOrders();
+console.log(prod1.getDetails());
